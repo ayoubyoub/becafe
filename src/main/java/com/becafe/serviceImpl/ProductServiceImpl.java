@@ -1,4 +1,5 @@
-package com.becafe.service.Impl;
+package com.becafe.serviceImpl;
+
 import com.becafe.model.Product;
 import com.becafe.repository.ProductRepository;
 import com.becafe.service.ProductService;

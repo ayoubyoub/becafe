@@ -1,6 +1,5 @@
 package com.becafe.security.service;
 
-import com.becafe.service.UserValidationService;
 import com.becafe.model.User;
 import com.becafe.model.UserRole;
 import com.becafe.security.dto.AuthenticatedUserDto;

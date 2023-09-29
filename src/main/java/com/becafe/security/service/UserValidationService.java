@@ -1,4 +1,4 @@
-package com.becafe.service;
+package com.becafe.security.service;
 
 import com.becafe.utils.ExceptionMessageAccessor;
 import com.becafe.exceptions.RegistrationException;

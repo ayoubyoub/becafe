@@ -11,23 +11,17 @@ import javax.persistence.Id;
 
 @Entity
 @NoArgsConstructor
+@Getter
+@Setter
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
-    @Setter
     private Long id;
 
-    @Getter
-    @Setter
     private String title;
 
-    @Getter
-    @Setter
     private String author;
 
-    @Getter
-    @Setter
     private String genre;
 }
