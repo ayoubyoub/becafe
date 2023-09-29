@@ -40,7 +40,7 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
-        // Call the service method to update the product
+        // Check if the product exist
         Optional<Product> existingProductOptional = productService.getProductById(id);
 
         if (existingProductOptional.isPresent()) {
@@ -60,7 +60,18 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        productService.deleteProduct(id);
-        return ResponseEntity.noContent().build();
+        // Check if the product exist
+        Optional<Product> existingProductOptional = productService.getProductById(id);
+
+        if (existingProductOptional.isPresent()) {
+            Product existingProduct = existingProductOptional.get();
+            // Delete product
+            productService.deleteProduct(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            // Product with the given id not found
+            return ResponseEntity.notFound().build();
+        }
+
     }
 }
