@@ -89,7 +89,7 @@ This project is licensed under the MIT License.
 
 ## Contact
 
-Reach out to me ```sisayoubyoub@gmail.com```
+Reach out to me ```sis.ayoub.youb@gmail.com```
 
 
 made by Ayoub Youb with ❤️
