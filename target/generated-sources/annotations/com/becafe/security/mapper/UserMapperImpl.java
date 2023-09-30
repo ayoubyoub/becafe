@@ -7,7 +7,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-09-30T02:02:16+0100",
+    date = "2023-09-30T23:48:06+0100",
     comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 3.35.0.v20230814-2020, environment: Java 17.0.8.1 (Eclipse Adoptium)"
 )
 public class UserMapperImpl implements UserMapper {
@@ -23,6 +23,7 @@ public class UserMapperImpl implements UserMapper {
         user.email( registrationRequest.getEmail() );
         user.name( registrationRequest.getName() );
         user.password( registrationRequest.getPassword() );
+        user.role( registrationRequest.getRole() );
         user.username( registrationRequest.getUsername() );
 
         return user.build();
@@ -38,7 +39,7 @@ public class UserMapperImpl implements UserMapper {
 
         authenticatedUserDto.setName( user.getName() );
         authenticatedUserDto.setPassword( user.getPassword() );
-        authenticatedUserDto.setUserRole( user.getUserRole() );
+        authenticatedUserDto.setRole( user.getRole() );
         authenticatedUserDto.setUsername( user.getUsername() );
 
         return authenticatedUserDto;
@@ -54,7 +55,7 @@ public class UserMapperImpl implements UserMapper {
 
         user.name( authenticatedUserDto.getName() );
         user.password( authenticatedUserDto.getPassword() );
-        user.userRole( authenticatedUserDto.getUserRole() );
+        user.role( authenticatedUserDto.getRole() );
         user.username( authenticatedUserDto.getUsername() );
 
         return user.build();

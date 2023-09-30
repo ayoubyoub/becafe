@@ -1,7 +1,6 @@
 package com.becafe.security.service;
 
 import com.becafe.model.User;
-import com.becafe.model.UserRole;
 import com.becafe.security.dto.AuthenticatedUserDto;
 import com.becafe.security.dto.RegistrationRequest;
 import com.becafe.security.dto.RegistrationResponse;
@@ -42,8 +41,6 @@ public class UserServiceImpl implements UserService {
 
 		final User user = UserMapper.INSTANCE.convertToUser(registrationRequest);
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		user.setUserRole(UserRole.USER);
-
 		userRepository.save(user);
 
 		final String username = registrationRequest.getUsername();

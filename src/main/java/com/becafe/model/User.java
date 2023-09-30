@@ -29,8 +29,8 @@ public class User {
 	@Column(name="email", unique = true)
 	private String email;
 
-	@Column(name="userRole")
+	@Column(name="role")
 	@Enumerated(EnumType.STRING)
-	private UserRole userRole;
+	private Role role;
 
 }

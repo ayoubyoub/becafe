@@ -1,6 +1,6 @@
 package com.becafe.security.service;
 
-import com.becafe.model.UserRole;
+import com.becafe.model.Role;
 import com.becafe.security.dto.AuthenticatedUserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		final String authenticatedUsername = authenticatedUser.getUsername();
 		final String authenticatedPassword = authenticatedUser.getPassword();
-		final UserRole userRole = authenticatedUser.getUserRole();
+		final Role userRole = authenticatedUser.getRole();
 		final SimpleGrantedAuthority grantedAuthority = new SimpleGrantedAuthority(userRole.name());
 
 		return new User(authenticatedUsername, authenticatedPassword, Collections.singletonList(grantedAuthority));

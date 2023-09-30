@@ -1,6 +1,6 @@
 package com.becafe.security.dto;
 
-import com.becafe.model.UserRole;
+import com.becafe.model.Role;
 import lombok.*;
 
 // made by Ayoub Youb with ❤️
@@ -14,6 +14,6 @@ public class AuthenticatedUserDto {
 
 	private String password;
 
-	private UserRole userRole;
+	private Role role;
 
 }
