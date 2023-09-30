@@ -1,4 +1,6 @@
 package com.becafe.service;
+
+import com.becafe.dto.ProductDto;
 import com.becafe.model.Product;
 
 import java.util.List;
@@ -6,11 +8,11 @@ import java.util.Optional;
 
 public interface ProductService {
 
-    List<Product> getAllProducts();
+    List<ProductDto> getAllProducts();
 
-    Optional<Product> getProductById(Long id);
+    Optional<ProductDto> getProductById(Long id);
 
-    Product saveProduct(Product product);
+    ProductDto saveProduct(ProductDto productDto);
 
     void deleteProduct(Long id);
 }

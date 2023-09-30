@@ -1,7 +1,9 @@
 package com.becafe.controller;
 
+import com.becafe.dto.ProductDto;
 import com.becafe.model.Product;
 import com.becafe.service.ProductService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,64 +16,54 @@ import java.util.Optional;
 public class ProductController {
 
     private final ProductService productService;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, ModelMapper modelMapper) {
         this.productService = productService;
+        this.modelMapper = modelMapper;
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts() {
-        List<Product> products = productService.getAllProducts();
+    public ResponseEntity<List<ProductDto>> getAllProducts() {
+        List<ProductDto> products = productService.getAllProducts();
         return ResponseEntity.ok(products);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Optional<Product> product = productService.getProductById(id);
+    public ResponseEntity<ProductDto> getProductById(@PathVariable Long id) {
+        Optional<ProductDto> product = productService.getProductById(id);
         return product.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
-        Product savedProduct = productService.saveProduct(product);
+    public ResponseEntity<ProductDto> addProduct(@RequestBody ProductDto product) {
+        ProductDto savedProduct = productService.saveProduct(product);
         return ResponseEntity.ok(savedProduct);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
-        // Check if the product exist
-        Optional<Product> existingProductOptional = productService.getProductById(id);
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable Long id, @RequestBody ProductDto updatedProduct) {
+        Optional<ProductDto> existingProductOptional = productService.getProductById(id);
 
         if (existingProductOptional.isPresent()) {
-            Product existingProduct = existingProductOptional.get();
-            existingProduct.setTitle(updatedProduct.getTitle());
-            existingProduct.setAuthor(updatedProduct.getAuthor());
-            existingProduct.setGenre(updatedProduct.getGenre());
-
-            // Save the updated product using the service
-            Product savedProduct = productService.saveProduct(existingProduct);
-            return ResponseEntity.ok(savedProduct);
+            ProductDto existingProductEntity = existingProductOptional.get();
+            modelMapper.map(updatedProduct, existingProductEntity);
+            ProductDto updatedProductEntity = productService.saveProduct(existingProductEntity);
+            return ResponseEntity.ok(updatedProductEntity);
         } else {
-            // Product with the given id not found
             return ResponseEntity.notFound().build();
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        // Check if the product exist
-        Optional<Product> existingProductOptional = productService.getProductById(id);
-
-        if (existingProductOptional.isPresent()) {
-            Product existingProduct = existingProductOptional.get();
-            // Delete product
+        Optional<ProductDto> product = productService.getProductById(id);
+        if (product.isPresent()) {
             productService.deleteProduct(id);
             return ResponseEntity.noContent().build();
         } else {
-            // Product with the given id not found
             return ResponseEntity.notFound().build();
         }
-
     }
 }
