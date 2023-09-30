@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// Ayoub Youb
+// made by Ayoub Youb with ❤️
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 

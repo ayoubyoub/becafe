@@ -1,6 +1,6 @@
 package com.becafe.model;
 
-// Ayoub Youb
+// made by Ayoub Youb with ❤️
 public enum UserRole {
 	USER,
 	ADMIN

@@ -1,13 +1,13 @@
 package com.becafe.controller;
 
 import com.becafe.dto.ProductDto;
-import com.becafe.model.Product;
 import com.becafe.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,14 +36,16 @@ public class ProductController {
         return product.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
-    public ResponseEntity<ProductDto> addProduct(@RequestBody ProductDto product) {
+    public ResponseEntity<ProductDto> addProduct(@Valid @RequestBody ProductDto product) {
         ProductDto savedProduct = productService.saveProduct(product);
         return ResponseEntity.ok(savedProduct);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable Long id, @RequestBody ProductDto updatedProduct) {
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDto updatedProduct) {
         Optional<ProductDto> existingProductOptional = productService.getProductById(id);
 
         if (existingProductOptional.isPresent()) {
@@ -56,6 +58,7 @@ public class ProductController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         Optional<ProductDto> product = productService.getProductById(id);

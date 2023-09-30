@@ -4,7 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
-// Ayoub Youb
+// made by Ayoub Youb with ❤️
 public class SecurityConstants {
 
 	// FIXME : Customize security constants for your application.

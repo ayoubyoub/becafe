@@ -1,13 +1,10 @@
 package com.becafe.security.dto;
 
 import com.becafe.model.UserRole;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-// Ayoub Youb
-@Getter
-@Setter
+// made by Ayoub Youb with ❤️
+@Data
 @NoArgsConstructor
 public class AuthenticatedUserDto {
 

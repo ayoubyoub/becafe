@@ -1,12 +1,9 @@
 package com.becafe.security.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-// Ayoub Youb
-@Getter
-@Setter
+// made by Ayoub Youb with ❤️
+@Data
 @AllArgsConstructor
 public class LoginResponse {
 

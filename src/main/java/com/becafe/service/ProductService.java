@@ -1,7 +1,6 @@
 package com.becafe.service;
 
 import com.becafe.dto.ProductDto;
-import com.becafe.model.Product;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,10 +1,9 @@
 package com.becafe.exceptions;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
-// Ayoub Youb
-@Getter
+// made by Ayoub Youb with ❤️
+@Data
 @RequiredArgsConstructor
 public class RegistrationException extends RuntimeException {
 

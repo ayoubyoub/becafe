@@ -12,7 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
-// Ayoub Youb
+// made by Ayoub Youb with ❤️
 @Slf4j
 @Service
 @RequiredArgsConstructor

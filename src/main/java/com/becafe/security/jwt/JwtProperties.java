@@ -1,18 +1,10 @@
 package com.becafe.security.jwt;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * Created on October, 2022
- *
- * @author Faruk
- */
-
-@Getter
-@Setter
+@Data
 @Configuration
 @ConfigurationProperties(prefix = "jwt")
 public class JwtProperties {

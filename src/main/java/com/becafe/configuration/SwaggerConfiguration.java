@@ -7,8 +7,7 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,8 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import static io.swagger.v3.oas.models.security.SecurityScheme.Type.HTTP;
 
 
-@Getter
-@Setter
+@Data
 @Configuration
 @ConfigurationProperties(prefix = "swagger")
 public class SwaggerConfiguration {

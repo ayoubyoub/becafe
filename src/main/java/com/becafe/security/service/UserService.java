@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-// Ayoub Youb
+// made by Ayoub Youb with ❤️
 public interface UserService {
 
 	User findByUsername(String username);
@@ -20,7 +20,7 @@ public interface UserService {
 
 	AuthenticatedUserDto findAuthenticatedUserByUsername(String username);
 
-	// Ayoub Youb
+	// made by Ayoub Youb with ❤️
 	@Slf4j
 	@Service
 	@RequiredArgsConstructor

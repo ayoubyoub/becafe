@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-// Ayoub Youb
+// made by Ayoub Youb with ❤️
 @Component
 @RequiredArgsConstructor
 public class JwtTokenManager {

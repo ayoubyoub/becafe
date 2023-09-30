@@ -1,14 +1,12 @@
 package com.becafe.security.dto;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 
-// Ayoub Youb
-@Getter
-@Setter
+// made by Ayoub Youb with ❤️
+@Data
 @NoArgsConstructor
 public class LoginRequest {
 

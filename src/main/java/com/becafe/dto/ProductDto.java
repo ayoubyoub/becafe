@@ -2,12 +2,13 @@ package com.becafe.dto;
 
 import lombok.*;
 
+import javax.validation.constraints.NotEmpty;
+
+@Data
 @NoArgsConstructor
-@Getter
-@Setter
+@AllArgsConstructor
 public class ProductDto {
     private Long id;
-    private String title;
-    private String author;
-    private String genre;
+    @NotEmpty(message = "{designation_not_empty}")
+    private String designation;
 }

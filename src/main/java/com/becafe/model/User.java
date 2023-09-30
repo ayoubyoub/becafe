@@ -4,11 +4,10 @@ import lombok.*;
 
 import javax.persistence.*;
 
-// Ayoub Youb
-@Getter
-@Setter
+// made by Ayoub Youb with ❤️
 @Entity
 @Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "users")
@@ -18,15 +17,19 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(name="name")
 	private String name;
 
-	@Column(unique = true)
+	@Column(name="username", unique = true)
 	private String username;
 
+	@Column(name="password")
 	private String password;
 
+	@Column(name="email", unique = true)
 	private String email;
 
+	@Column(name="userRole")
 	@Enumerated(EnumType.STRING)
 	private UserRole userRole;
 

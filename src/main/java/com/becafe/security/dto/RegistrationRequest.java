@@ -1,17 +1,12 @@
 package com.becafe.security.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-// Ayoub Youb
-@Getter
-@Setter
-@ToString
+// made by Ayoub Youb with ❤️
+@Data
 @NoArgsConstructor
 public class RegistrationRequest {
 

@@ -4,9 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "products")
@@ -16,9 +15,6 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
-
-    private String author;
-
-    private String genre;
+    @Column(name="designation")
+    private String designation;
 }
