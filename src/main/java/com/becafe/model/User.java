@@ -10,11 +10,12 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name = "users")
 public class User {
 
 	@Id
-	@Column(name="userID")
+	@Column(name="userID", unique = true)
 	private String userID;
 
 	@Column(name="username", unique = true)
@@ -32,4 +33,16 @@ public class User {
 
 	@Column(name="active", columnDefinition = "boolean default false")
 	private boolean active;
+
+	@Column(name = "firstName")
+	private String firstName;
+
+	@Column(name = "lastName")
+	private String lastName;
+
+	@Column(name = "address")
+	private String address;
+
+	@Column(name = "phone")
+	private String phone;
 }

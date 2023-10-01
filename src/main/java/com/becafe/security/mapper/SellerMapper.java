@@ -10,8 +10,4 @@ import org.mapstruct.factory.Mappers;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface SellerMapper {
 
-	SellerMapper INSTANCE = Mappers.getMapper(SellerMapper.class);
-
-	Seller convertToSeller(RegistrationRequest registrationRequest);
-
 }

@@ -12,8 +12,4 @@ import org.mapstruct.factory.Mappers;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface CostumerMapper {
 
-	CostumerMapper INSTANCE = Mappers.getMapper(CostumerMapper.class);
-
-	Costumer convertToCostumer(RegistrationRequest registrationRequest);
-
 }
