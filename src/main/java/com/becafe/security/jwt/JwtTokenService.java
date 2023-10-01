@@ -1,16 +1,18 @@
 package com.becafe.security.jwt;
 
-import com.becafe.security.mapper.UserMapper;
-import com.becafe.security.service.UserService;
+import com.becafe.dto.UserDto;
 import com.becafe.model.User;
-import com.becafe.security.dto.AuthenticatedUserDto;
 import com.becafe.security.dto.LoginRequest;
 import com.becafe.security.dto.LoginResponse;
+import com.becafe.service.RegisterService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 // made by Ayoub Youb with ❤️
 @Slf4j
@@ -18,11 +20,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class JwtTokenService {
 
-	private final UserService userService;
+	private final RegisterService registerService;
 
 	private final JwtTokenManager jwtTokenManager;
 
 	private final AuthenticationManager authenticationManager;
+
+	private final ModelMapper modelMapper;
 
 	public LoginResponse getLoginResponse(LoginRequest loginRequest) {
 
@@ -33,9 +37,9 @@ public class JwtTokenService {
 
 		authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
-		final AuthenticatedUserDto authenticatedUserDto = userService.findAuthenticatedUserByUsername(username);
+		final Optional<UserDto> authenticatedUserDto = registerService.findByUsername(username);
 
-		final User user = UserMapper.INSTANCE.convertToUser(authenticatedUserDto);
+		final User user = modelMapper.map(authenticatedUserDto.get(), User.class);
 		final String token = jwtTokenManager.generateToken(user);
 
 		log.info("{} has successfully logged in!", user.getUsername());

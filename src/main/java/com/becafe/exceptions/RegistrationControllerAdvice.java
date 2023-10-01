@@ -1,6 +1,6 @@
 package com.becafe.exceptions;
 
-import com.becafe.controller.RegistrationController;
+import com.becafe.controller.RegisterController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.LocalDateTime;
 
 // made by Ayoub Youb with ❤️
-@RestControllerAdvice(basePackageClasses = RegistrationController.class)
+@RestControllerAdvice(basePackageClasses = RegisterController.class)
 public class RegistrationControllerAdvice {
 
 	@ExceptionHandler(RegistrationException.class)

@@ -1,6 +1,5 @@
 package com.becafe.security.dto;
 
-import lombok.Getter;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;

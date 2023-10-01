@@ -2,13 +2,12 @@ package com.becafe.serviceImpl;
 
 import com.becafe.dto.UserDto;
 import com.becafe.model.Costumer;
-import com.becafe.model.Role;
 import com.becafe.model.Seller;
 import com.becafe.model.User;
 import com.becafe.repository.CostumerRepository;
 import com.becafe.repository.SellerRepository;
 import com.becafe.repository.UserRepository;
-import com.becafe.service.UserService;
+import com.becafe.service.RegisterService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,26 +19,29 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class RegisterServiceImpl implements RegisterService {
 
     private final UserRepository userRepository;
     private final CostumerRepository costumerRepository;
-
     private final SellerRepository sellerRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    private final UserValidationService userValidationService;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository,
-                           ModelMapper modelMapper,
-                           BCryptPasswordEncoder bCryptPasswordEncoder,
-                           CostumerRepository costumerRepository,
-                           SellerRepository sellerRepository) {
+    public RegisterServiceImpl(UserRepository userRepository,
+                               ModelMapper modelMapper,
+                               BCryptPasswordEncoder bCryptPasswordEncoder,
+                               CostumerRepository costumerRepository,
+                               SellerRepository sellerRepository,
+                               UserValidationService userValidationService) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.costumerRepository = costumerRepository;
         this.sellerRepository = sellerRepository;
+        this.userValidationService = userValidationService;
     }
 
     @Override
@@ -51,13 +53,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<UserDto> getUserById(String username) {
+    public Optional<UserDto> findById(String id) {
+        Optional<User> user = userRepository.findById(id);
+        return user.map(value -> modelMapper.map(value, UserDto.class));
+    }
+
+    @Override
+    public Optional<UserDto> findByUsername(String username) {
         Optional<User> user = userRepository.findByUsername(username);
         return user.map(value -> modelMapper.map(value, UserDto.class));
     }
 
     @Override
     public UserDto saveUser(UserDto userDto) {
+        userValidationService.validateUser(userDto);
+
         User user;
         switch (userDto.getRole()) {
             case ADMIN:
