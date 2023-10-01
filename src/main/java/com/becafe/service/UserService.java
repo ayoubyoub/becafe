@@ -13,9 +13,5 @@ public interface UserService {
 
     UserDto saveUser(UserDto userDto);
 
-    UserDto saveCostumer(UserDto userDto);
-
-    UserDto saveSeller(UserDto userDto);
-
     void deleteUser(String id);
 }

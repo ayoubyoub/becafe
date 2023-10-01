@@ -58,32 +58,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto saveUser(UserDto userDto) {
-        User user = modelMapper.map(userDto, User.class);
+        User user;
+        switch (userDto.getRole()) {
+            case ADMIN:
+                user = modelMapper.map(userDto, User.class);
+                break;
+            case COSTUMER:
+                user = modelMapper.map(userDto, Costumer.class);
+                break;
+            case SELLER:
+                user = modelMapper.map(userDto, Seller.class);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid user role");
+        }
+
         user.setUserID(UUID.randomUUID().toString());
         user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-        user.setRole(Role.ADMIN);
+        user.setRole(userDto.getRole());
         user = userRepository.save(user);
+
         return modelMapper.map(user, UserDto.class);
-    }
-
-    @Override
-    public UserDto saveCostumer(UserDto userDto) {
-        Costumer costumer = modelMapper.map(userDto, Costumer.class);
-        costumer.setUserID(UUID.randomUUID().toString());
-        costumer.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-        costumer.setRole(Role.COSTUMER);
-        costumer = costumerRepository.save(costumer);
-        return modelMapper.map(costumer, UserDto.class);
-    }
-
-    @Override
-    public UserDto saveSeller(UserDto userDto) {
-        Seller seller = modelMapper.map(userDto, Seller.class);
-        seller.setUserID(UUID.randomUUID().toString());
-        seller.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
-        seller.setRole(Role.SELLER);
-        seller = sellerRepository.save(seller);
-        return modelMapper.map(seller, UserDto.class);
     }
 
     @Override

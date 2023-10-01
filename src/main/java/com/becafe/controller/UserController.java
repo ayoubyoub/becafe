@@ -15,7 +15,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-
     private final UserService userService;
     private final ModelMapper modelMapper;
 
@@ -40,18 +39,6 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserDto> addUser(@Valid @RequestBody UserDto user) {
         UserDto savedUser = userService.saveUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
-    }
-
-    @PostMapping("/costumer")
-    public ResponseEntity<UserDto> addCostumer(@Valid @RequestBody UserDto user) {
-        UserDto savedUser = userService.saveCostumer(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
-    }
-
-    @PostMapping("/seller")
-    public ResponseEntity<UserDto> addSeller(@Valid @RequestBody UserDto user) {
-        UserDto savedUser = userService.saveSeller(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 

@@ -1,5 +1,6 @@
 package com.becafe.dto;
 
+import com.becafe.model.Role;
 import lombok.Data;
 
 @Data
@@ -8,7 +9,7 @@ public class UserDto{
     private String username;
     private String password;
     private String email;
-    private String role;
+    private Role role;
     private boolean active;
     private String firstName;
     private String lastName;
