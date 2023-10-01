@@ -19,16 +19,16 @@ import java.util.stream.Collectors;
 public class ValidationAdvice {
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public final ResponseEntity<ValidationErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
+	public final ResponseEntity<ValidationResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
 
 		final List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
 		final List<String> errorList = fieldErrors.stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toList());
 
-		final ValidationErrorResponse validationErrorResponse = new ValidationErrorResponse(HttpStatus.BAD_REQUEST, LocalDateTime.now(), errorList);
+		final ValidationResponse validationResponse = new ValidationResponse(HttpStatus.BAD_REQUEST, LocalDateTime.now(), errorList);
 
 		log.warn("Validation errors : {} , Parameters : {}", errorList, exception.getBindingResult().getTarget());
 
-		return ResponseEntity.status(validationErrorResponse.getStatus()).body(validationErrorResponse);
+		return ResponseEntity.status(validationResponse.getStatus()).body(validationResponse);
 	}
 
 }

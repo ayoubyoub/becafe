@@ -5,7 +5,7 @@ import lombok.*;
 // made by Ayoub Youb with ❤️
 @Data
 @RequiredArgsConstructor
-public class RegistrationException extends RuntimeException {
+public class RegistrationResponse extends RuntimeException {
 
 	private final String errorMessage;
 

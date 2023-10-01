@@ -21,6 +21,7 @@ public class JwtTokenManager {
 	public String generateToken(User user) {
 
 		final String username = user.getUsername();
+		final String userID = user.getUserID();
 		final Role userRole = user.getRole();
 
 		//@formatter:off
@@ -28,6 +29,7 @@ public class JwtTokenManager {
 				.withSubject(username)
 				.withIssuer(jwtProperties.getIssuer())
 				.withClaim("role", userRole.name())
+				.withClaim("userID", userID)
 				.withIssuedAt(new Date())
 				.withExpiresAt(new Date(System.currentTimeMillis() + jwtProperties.getExpirationMinute() * 60 * 1000))
 				.sign(Algorithm.HMAC256(jwtProperties.getSecretKey().getBytes()));

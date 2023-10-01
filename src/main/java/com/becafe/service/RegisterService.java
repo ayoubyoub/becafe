@@ -1,7 +1,7 @@
 package com.becafe.service;
 
 import com.becafe.dto.UserDto;
-import com.becafe.exceptions.RegistrationException;
+import com.becafe.exceptions.RegistrationResponse;
 import com.becafe.repository.UserRepository;
 import com.becafe.utils.ExceptionMessageAccessor;
 import lombok.RequiredArgsConstructor;
@@ -50,7 +50,7 @@ public interface RegisterService {
                 log.warn("{} is already being used!", username);
 
                 final String existsUsername = exceptionMessageAccessor.getMessage(null, USERNAME_ALREADY_EXISTS);
-                throw new RegistrationException(existsUsername);
+                throw new RegistrationResponse(existsUsername);
             }
 
         }
@@ -64,7 +64,7 @@ public interface RegisterService {
                 log.warn("{} is already being used!", email);
 
                 final String existsEmail = exceptionMessageAccessor.getMessage(null, EMAIL_ALREADY_EXISTS);
-                throw new RegistrationException(existsEmail);
+                throw new RegistrationResponse(existsEmail);
             }
         }
 
