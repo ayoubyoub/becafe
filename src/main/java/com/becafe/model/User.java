@@ -14,11 +14,8 @@ import javax.persistence.*;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	@Column(name="name")
-	private String name;
+	@Column(name="userID")
+	private String userID;
 
 	@Column(name="username", unique = true)
 	private String username;
@@ -33,4 +30,6 @@ public class User {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
+	@Column(name="active", columnDefinition = "boolean default false")
+	private boolean active;
 }

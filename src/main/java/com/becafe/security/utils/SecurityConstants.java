@@ -40,8 +40,11 @@ public class SecurityConstants {
 
 	public static final String LOGIN_REQUEST_URI = "/login";
 
-	public static final String REGISTRATION_REQUEST_URI = "/register";
+	public static final String REGISTRATION_ADMIN_REQUEST_URI = "/register/admin";
 
+	public static final String REGISTRATION_COSTUMER_REQUEST_URI = "/register/costumer";
+
+	public static final String REGISTRATION_SELLER_REQUEST_URI = "/register/seller";
 	private SecurityConstants() {
 
 		throw new UnsupportedOperationException();

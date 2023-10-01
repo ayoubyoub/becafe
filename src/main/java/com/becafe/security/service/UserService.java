@@ -1,6 +1,7 @@
 package com.becafe.security.service;
 
 import com.becafe.exceptions.RegistrationException;
+import com.becafe.model.Role;
 import com.becafe.model.User;
 import com.becafe.repository.UserRepository;
 import com.becafe.security.dto.AuthenticatedUserDto;
@@ -16,7 +17,7 @@ public interface UserService {
 
 	User findByUsername(String username);
 
-	RegistrationResponse registration(RegistrationRequest registrationRequest);
+	RegistrationResponse registration(RegistrationRequest registrationRequest, Role role);
 
 	AuthenticatedUserDto findAuthenticatedUserByUsername(String username);
 
