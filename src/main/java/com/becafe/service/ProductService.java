@@ -9,9 +9,9 @@ public interface ProductService {
 
     List<ProductDto> getAllProducts();
 
-    Optional<ProductDto> getProductById(Long id);
+    Optional<ProductDto> getProductById(String productID);
 
     ProductDto saveProduct(ProductDto productDto);
 
-    void deleteProduct(Long id);
+    void deleteProduct(String productID);
 }

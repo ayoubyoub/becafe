@@ -53,8 +53,8 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public Optional<UserDto> findById(String id) {
-        Optional<User> user = userRepository.findById(id);
+    public Optional<UserDto> findById(String userID) {
+        Optional<User> user = userRepository.findById(userID);
         return user.map(value -> modelMapper.map(value, UserDto.class));
     }
 
@@ -92,7 +92,7 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public void deleteUser(String id) {
-        userRepository.deleteById(id);
+    public void deleteUser(String userID) {
+        userRepository.deleteById(userID);
     }
 }

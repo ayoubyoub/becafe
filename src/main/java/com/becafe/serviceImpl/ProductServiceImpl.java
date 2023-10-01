@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,20 +34,21 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<ProductDto> getProductById(Long id) {
-        Optional<Product> product = productRepository.findById(id);
+    public Optional<ProductDto> getProductById(String productID) {
+        Optional<Product> product = productRepository.findById(productID);
         return product.map(value -> modelMapper.map(value, ProductDto.class));
     }
 
     @Override
     public ProductDto saveProduct(ProductDto productDto) {
         Product product = modelMapper.map(productDto, Product.class);
+        product.setProductID(UUID.randomUUID().toString());
         product = productRepository.save(product);
         return modelMapper.map(product, ProductDto.class);
     }
 
     @Override
-    public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
+    public void deleteProduct(String productID) {
+        productRepository.deleteById(productID);
     }
 }

@@ -30,9 +30,9 @@ public class RegisterController {
         return ResponseEntity.ok(users);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UserDto> findById(@PathVariable String id) {
-        Optional<UserDto> user = registerService.findById(id);
+    @GetMapping("/{userID}")
+    public ResponseEntity<UserDto> findById(@PathVariable String userID) {
+        Optional<UserDto> user = registerService.findById(userID);
         return user.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
@@ -42,9 +42,9 @@ public class RegisterController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable String id, @Valid @RequestBody UserDto updatedUser) {
-        Optional<UserDto> existingUserOptional = registerService.findById(id);
+    @PutMapping("/{userID}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable String userID, @Valid @RequestBody UserDto updatedUser) {
+        Optional<UserDto> existingUserOptional = registerService.findById(userID);
 
         if (existingUserOptional.isPresent()) {
             UserDto existingUserEntity = existingUserOptional.get();
@@ -56,11 +56,11 @@ public class RegisterController {
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable String id) {
-        Optional<UserDto> user = registerService.findById(id);
+    @DeleteMapping("/{userID}")
+    public ResponseEntity<Void> deleteUser(@PathVariable String userID) {
+        Optional<UserDto> user = registerService.findById(userID);
         if (user.isPresent()) {
-            registerService.deleteUser(id);
+            registerService.deleteUser(userID);
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();

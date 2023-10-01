@@ -9,7 +9,6 @@ import java.util.Objects;
 
 @Service
 public class GeneralMessageAccessor {
-
 	private final MessageSource messageSource;
 
 	GeneralMessageAccessor(@Qualifier("generalMessageSource") MessageSource messageSource) {

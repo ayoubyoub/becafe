@@ -14,10 +14,10 @@ import java.util.Optional;
 // made by Ayoub Youb with ❤️
 public interface RegisterService {
     List<UserDto> getAllUsers();
-    Optional<UserDto> findById(String id);
+    Optional<UserDto> findById(String userID);
     Optional<UserDto> findByUsername(String username);
     UserDto saveUser(UserDto userDto);
-    void deleteUser(String id);
+    void deleteUser(String userID);
     @Slf4j
     @Service
     @RequiredArgsConstructor

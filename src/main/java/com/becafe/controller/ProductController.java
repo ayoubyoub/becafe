@@ -30,9 +30,9 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ProductDto> getProductById(@PathVariable Long id) {
-        Optional<ProductDto> product = productService.getProductById(id);
+    @GetMapping("/{productID}")
+    public ResponseEntity<ProductDto> getProductById(@PathVariable String productID) {
+        Optional<ProductDto> product = productService.getProductById(productID);
         return product.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
@@ -44,9 +44,9 @@ public class ProductController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @PutMapping("/{id}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDto updatedProduct) {
-        Optional<ProductDto> existingProductOptional = productService.getProductById(id);
+    @PutMapping("/{productID}")
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable String productID, @Valid @RequestBody ProductDto updatedProduct) {
+        Optional<ProductDto> existingProductOptional = productService.getProductById(productID);
 
         if (existingProductOptional.isPresent()) {
             ProductDto existingProductEntity = existingProductOptional.get();
@@ -59,11 +59,11 @@ public class ProductController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        Optional<ProductDto> product = productService.getProductById(id);
+    @DeleteMapping("/{productID}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable String productID) {
+        Optional<ProductDto> product = productService.getProductById(productID);
         if (product.isPresent()) {
-            productService.deleteProduct(id);
+            productService.deleteProduct(productID);
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();

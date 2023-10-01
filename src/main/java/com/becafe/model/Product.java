@@ -12,7 +12,8 @@ import javax.persistence.*;
 public class Product {
 
     @Id
-    private String id;
+    @Column(name="productID", unique = true)
+    private String productID;
 
     @Column(name="designation")
     private String designation;

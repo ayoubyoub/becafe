@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDto {
-    private Long id;
+    private String productID;
     @NotEmpty(message = "{designation_not_empty}")
     private String designation;
 }

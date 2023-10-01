@@ -17,7 +17,7 @@ public class SecurityConstants {
 	/**
 	 * Secret key for signature
 	 */
-	public static final String SECRET_KEY = "mySecretKey";
+	public static final String SECRET_KEY = "I_LOVE_RAWAN_AND_KOSAY";
 
 	/**
 	 * The company who provided token.
