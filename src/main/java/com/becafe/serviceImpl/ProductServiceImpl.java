@@ -48,6 +48,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public ProductDto updateProduct(ProductDto productDto) {
+        Product product = modelMapper.map(productDto, Product.class);
+        product = productRepository.save(product);
+        return modelMapper.map(product, ProductDto.class);
+    }
+
+    @Override
     public void deleteProduct(String productID) {
         productRepository.deleteById(productID);
     }

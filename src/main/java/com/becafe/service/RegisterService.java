@@ -17,6 +17,7 @@ public interface RegisterService {
     Optional<UserDto> findById(String userID);
     Optional<UserDto> findByUsername(String username);
     UserDto saveUser(UserDto userDto);
+    UserDto updateUser(UserDto userDto);
     void deleteUser(String userID);
     @Slf4j
     @Service

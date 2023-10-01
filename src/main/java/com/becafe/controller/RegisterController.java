@@ -49,7 +49,7 @@ public class RegisterController {
         if (existingUserOptional.isPresent()) {
             UserDto existingUserEntity = existingUserOptional.get();
             modelMapper.map(updatedUser, existingUserEntity);
-            UserDto updatedUserEntity = registerService.saveUser(existingUserEntity);
+            UserDto updatedUserEntity = registerService.updateUser(existingUserEntity);
             return ResponseEntity.ok(updatedUserEntity);
         } else {
             return ResponseEntity.notFound().build();

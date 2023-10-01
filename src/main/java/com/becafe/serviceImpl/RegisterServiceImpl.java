@@ -8,6 +8,7 @@ import com.becafe.repository.CostumerRepository;
 import com.becafe.repository.SellerRepository;
 import com.becafe.repository.UserRepository;
 import com.becafe.service.RegisterService;
+import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -67,7 +68,21 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public UserDto saveUser(UserDto userDto) {
         userValidationService.validateUser(userDto);
+        User user = createUserFromDto(userDto);
+        user.setUserID(UUID.randomUUID().toString());
+        user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+        user = userRepository.save(user);
+        return modelMapper.map(user, UserDto.class);
+    }
 
+    @Override
+    public UserDto updateUser(UserDto userDto) {
+        User user = createUserFromDto(userDto);
+        user = userRepository.save(user);
+        return modelMapper.map(user, UserDto.class);
+    }
+
+    private User createUserFromDto(UserDto userDto) {
         User user;
         switch (userDto.getRole()) {
             case ADMIN:
@@ -82,13 +97,8 @@ public class RegisterServiceImpl implements RegisterService {
             default:
                 throw new IllegalArgumentException("Invalid user role");
         }
-
-        user.setUserID(UUID.randomUUID().toString());
-        user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         user.setRole(userDto.getRole());
-        user = userRepository.save(user);
-
-        return modelMapper.map(user, UserDto.class);
+        return user;
     }
 
     @Override

@@ -51,7 +51,7 @@ public class ProductController {
         if (existingProductOptional.isPresent()) {
             ProductDto existingProductEntity = existingProductOptional.get();
             modelMapper.map(updatedProduct, existingProductEntity);
-            ProductDto updatedProductEntity = productService.saveProduct(existingProductEntity);
+            ProductDto updatedProductEntity = productService.updateProduct(existingProductEntity);
             return ResponseEntity.ok(updatedProductEntity);
         } else {
             return ResponseEntity.notFound().build();
